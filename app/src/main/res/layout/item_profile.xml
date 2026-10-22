@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginBottom="8dp"
+    android:background="@drawable/bg_item_profile"
+    android:gravity="center_vertical"
+    android:orientation="horizontal"
+    android:padding="10dp">
+
+    <!-- Active Indicator Bar -->
+    <View
+        android:id="@+id/viewActiveIndicator"
+        android:layout_width="4dp"
+        android:layout_height="36dp"
+        android:layout_marginEnd="10dp"
+        android:background="@color/accent_blue"
+        android:visibility="visible" />
+
+    <!-- Profile Info -->
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/tvProfileName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="اکانت اصلی"
+            android:textColor="@color/text_primary"
+            android:textSize="14sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/tvProfileSlot"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="2dp"
+            android:text="محیط ایزوله ۱"
+            android:textColor="@color/text_secondary"
+            android:textSize="11sp" />
+    </LinearLayout>
+
+    <!-- Clean Cache/Cookies Action -->
+    <ImageButton
+        android:id="@+id/btnCleanProfile"
+        android:layout_width="36dp"
+        android:layout_height="36dp"
+        android:background="?attr/selectableItemBackgroundBorderless"
+        android:contentDescription="@string/btn_clear_data"
+        android:padding="8dp"
+        android:src="@drawable/ic_cleaning" />
+
+    <!-- Delete Profile Action -->
+    <ImageButton
+        android:id="@+id/btnDeleteProfile"
+        android:layout_width="36dp"
+        android:layout_height="36dp"
+        android:background="?attr/selectableItemBackgroundBorderless"
+        android:contentDescription="@string/btn_delete"
+        android:padding="8dp"
+        android:src="@drawable/ic_delete" />
+
+    <!-- Switch / Select Button -->
+    <Button
+        android:id="@+id/btnSwitchProfile"
+        android:layout_width="wrap_content"
+        android:layout_height="34dp"
+        android:layout_marginStart="4dp"
+        android:background="@drawable/bg_button_flat"
+        android:minWidth="60dp"
+        android:paddingHorizontal="10dp"
+        android:text="@string/btn_switch"
+        android:textAllCaps="false"
+        android:textColor="@color/white"
+        android:textSize="12sp" />
+
+</LinearLayout>

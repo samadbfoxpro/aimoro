@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.moror.browser.ui.widget.SquareConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/cardShortcut"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="8dp"
+    android:background="@drawable/bg_shortcut_card_premium"
+    android:clickable="true"
+    android:focusable="true"
+    android:padding="12dp">
+
+    <!-- Subtle Drag Handle icon (left) -->
+    <ImageView
+        android:id="@+id/ivDragHandle"
+        android:layout_width="22dp"
+        android:layout_height="22dp"
+        android:alpha="0.35"
+        android:contentDescription="Drag"
+        android:padding="2dp"
+        android:src="@drawable/ic_drag_handle"
+        android:tint="@color/text_secondary"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <!-- 3-Dots Menu Button (right) -->
+    <ImageView
+        android:id="@+id/btnShortcutOptions"
+        android:layout_width="26dp"
+        android:layout_height="26dp"
+        android:background="?attr/selectableItemBackgroundBorderless"
+        android:contentDescription="Options"
+        android:padding="3dp"
+        android:src="@drawable/ic_more_vert"
+        android:tint="@color/text_secondary"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <!-- Icon Container (Center Squircle) -->
+    <FrameLayout
+        android:id="@+id/iconContainer"
+        android:layout_width="56dp"
+        android:layout_height="56dp"
+        android:background="@drawable/bg_shortcut_icon_glow"
+        app:layout_constraintBottom_toTopOf="@+id/tvShortcutTitle"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.42"
+        app:layout_constraintVertical_chainStyle="packed">
+
+        <!-- Default Initial Letter -->
+        <TextView
+            android:id="@+id/tvShortcutInitial"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:text="G"
+            android:textColor="@color/white"
+            android:textSize="24sp"
+            android:textStyle="bold" />
+
+        <!-- High-res Cached Favicon -->
+        <ImageView
+            android:id="@+id/ivShortcutIcon"
+            android:layout_width="38dp"
+            android:layout_height="38dp"
+            android:layout_gravity="center"
+            android:scaleType="fitCenter"
+            android:visibility="gone" />
+    </FrameLayout>
+
+    <!-- Shortcut Title -->
+    <TextView
+        android:id="@+id/tvShortcutTitle"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:ellipsize="end"
+        android:gravity="center"
+        android:maxLines="1"
+        android:text="گوگل"
+        android:textColor="@color/text_primary"
+        android:textSize="13.5sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/tvShortcutHost"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/iconContainer" />
+
+    <!-- Host Domain -->
+    <TextView
+        android:id="@+id/tvShortcutHost"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="2dp"
+        android:ellipsize="end"
+        android:gravity="center"
+        android:maxLines="1"
+        android:text="google.com"
+        android:textColor="#818CF8"
+        android:textSize="11sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvShortcutTitle" />
+
+</com.moror.browser.ui.widget.SquareConstraintLayout>

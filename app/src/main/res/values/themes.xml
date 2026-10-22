@@ -1,5 +1,34 @@
-<?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <style name="Theme.MororBrowser" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+        <item name="colorPrimary">@color/accent_blue</item>
+        <item name="colorPrimaryVariant">@color/accent_blue</item>
+        <item name="colorOnPrimary">@color/white</item>
+        <item name="colorSecondary">@color/accent_green</item>
+        <item name="android:statusBarColor">@color/bg_surface</item>
+        <item name="android:navigationBarColor">@color/bg_surface</item>
+        <item name="android:windowBackground">@color/bg_main</item>
+        <!-- Completely eliminate window animations for instant, lightweight transitions -->
+        <item name="android:windowAnimationStyle">@style/NoAnimationWindow</item>
+    </style>
 
-    <style name="Theme.MyApplication" parent="android:Theme.DeviceDefault.NoActionBar" />
+    <!-- Splash Theme for Instant Launch without Black Screen -->
+    <style name="Theme.MororBrowser.Splash" parent="Theme.MororBrowser">
+        <item name="android:windowBackground">@color/bg_main</item>
+        <item name="android:statusBarColor">@android:color/transparent</item>
+        <item name="android:navigationBarColor">@color/bg_main</item>
+    </style>
+
+    <!-- Zero-animation style across all window transitions -->
+    <style name="NoAnimationWindow">
+        <item name="android:activityOpenEnterAnimation">@null</item>
+        <item name="android:activityOpenExitAnimation">@null</item>
+        <item name="android:activityCloseEnterAnimation">@null</item>
+        <item name="android:activityCloseExitAnimation">@null</item>
+        <item name="android:taskOpenEnterAnimation">@null</item>
+        <item name="android:taskOpenExitAnimation">@null</item>
+        <item name="android:taskCloseEnterAnimation">@null</item>
+        <item name="android:taskCloseExitAnimation">@null</item>
+        <item name="android:windowEnterAnimation">@null</item>
+        <item name="android:windowExitAnimation">@null</item>
+    </style>
 </resources>

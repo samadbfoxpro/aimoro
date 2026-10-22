@@ -1,0 +1,488 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/layoutMiniClipSideOverlay"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#77000000"
+    android:clickable="true"
+    android:focusable="true"
+    android:visibility="gone">
+
+    <!-- Actual Sliding Side Panel on the Right -->
+    <LinearLayout
+        android:id="@+id/layoutMiniClipSideCard"
+        android:layout_width="324dp"
+        android:layout_height="match_parent"
+        android:layout_gravity="end"
+        android:background="@color/bg_surface"
+        android:clickable="true"
+        android:focusable="true"
+        android:orientation="vertical"
+        android:padding="14dp">
+
+        <!-- Header -->
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="12dp">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentStart="true"
+                android:layout_centerVertical="true"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="مینی‌کلیپ"
+                    android:textColor="@color/text_primary"
+                    android:textSize="15sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/tvSidePanelAccountBadge"
+                    android:layout_width="wrap_content"
+                    android:layout_height="24dp"
+                    android:layout_marginStart="6dp"
+                    android:background="@drawable/bg_badge_profile"
+                    android:gravity="center"
+                    android:paddingHorizontal="7dp"
+                    android:text="اکانت ۱"
+                    android:textColor="@color/accent_blue"
+                    android:textSize="11sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/tvSidePanelCountBadge"
+                    android:layout_width="wrap_content"
+                    android:layout_height="24dp"
+                    android:layout_marginStart="6dp"
+                    android:background="@drawable/bg_badge_profile"
+                    android:gravity="center"
+                    android:paddingHorizontal="7dp"
+                    android:text="۰ تصویر"
+                    android:textColor="@color/accent_blue"
+                    android:textSize="11sp"
+                    android:textStyle="bold" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_centerVertical="true"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <!-- Reset Draft Button (Clears images & positive prompt & title, keeps locked negative prompt) -->
+                <TextView
+                    android:id="@+id/btnClearMiniClipDraft"
+                    android:layout_width="wrap_content"
+                    android:layout_height="30dp"
+                    android:layout_marginEnd="6dp"
+                    android:background="@drawable/bg_badge_profile"
+                    android:foreground="?attr/selectableItemBackground"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:gravity="center"
+                    android:paddingHorizontal="10dp"
+                    android:text="🗑 ریست"
+                    android:textColor="@color/accent_red"
+                    android:textSize="12sp"
+                    android:textStyle="bold" />
+
+                <ImageButton
+                    android:id="@+id/btnCloseSidePanel"
+                    android:layout_width="32dp"
+                    android:layout_height="32dp"
+                    android:background="?attr/selectableItemBackgroundBorderless"
+                    android:contentDescription="Close"
+                    android:padding="6dp"
+                    android:src="@drawable/ic_close" />
+            </LinearLayout>
+        </RelativeLayout>
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:overScrollMode="never">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <!-- Multi-image horizontal list -->
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="4dp"
+                    android:text="تصاویر انتخاب شده (قابلیت حذف تکی با ✕):"
+                    android:textColor="@color/text_secondary"
+                    android:textSize="11sp" />
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rvSidePanelImages"
+                    android:layout_width="match_parent"
+                    android:layout_height="72dp"
+                    android:nestedScrollingEnabled="false"
+                    android:orientation="horizontal"
+                    android:overScrollMode="never" />
+
+                <TextView
+                    android:id="@+id/tvNoImagesPlaceholder"
+                    android:layout_width="match_parent"
+                    android:layout_height="64dp"
+                    android:background="@drawable/bg_edit_text"
+                    android:gravity="center"
+                    android:text="هنوز تصویری به مینی‌کلیپ افزوده نشده است\n(نگه‌داشتن انگشت روی عکس یا ورود خودکار)"
+                    android:textColor="@color/text_hint"
+                    android:textSize="11sp"
+                    android:visibility="gone" />
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginVertical="10dp"
+                    android:background="@color/border_color" />
+
+                <!-- Title Header Row with Toggle Button for Fixed Title -->
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="4dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentStart="true"
+                        android:layout_centerVertical="true"
+                        android:text="عنوان ذخیره فایل:"
+                        android:textColor="@color/text_secondary"
+                        android:textSize="11sp" />
+
+                    <!-- Small Toggle Button for Hidden Fixed Title -->
+                    <LinearLayout
+                        android:id="@+id/btnToggleFixedTitle"
+                        android:layout_width="wrap_content"
+                        android:layout_height="24dp"
+                        android:layout_alignParentEnd="true"
+                        android:layout_centerVertical="true"
+                        android:background="@drawable/bg_badge_profile"
+                        android:clickable="true"
+                        android:focusable="true"
+                        android:gravity="center"
+                        android:orientation="horizontal"
+                        android:paddingHorizontal="7dp">
+
+                        <TextView
+                            android:id="@+id/tvToggleFixedTitleLabel"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:includeFontPadding="false"
+                            android:text="📌 عنوان ثابت"
+                            android:textColor="@color/accent_blue"
+                            android:textSize="10.5sp"
+                            android:textStyle="bold" />
+                    </LinearLayout>
+                </RelativeLayout>
+
+                <!-- Hidden / Expandable Fixed Title Section -->
+                <LinearLayout
+                    android:id="@+id/layoutFixedTitleContainer"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="6dp"
+                    android:background="@drawable/bg_locked_box"
+                    android:orientation="vertical"
+                    android:padding="8dp"
+                    android:visibility="gone">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="📌 عنوان ثابت (همیشه تکرار می‌شود و با سیو پاک نمی‌شود):"
+                        android:textColor="@color/accent_green"
+                        android:textSize="10.5sp" />
+
+                    <EditText
+                        android:id="@+id/etSidePanelFixedTitle"
+                        android:layout_width="match_parent"
+                        android:layout_height="36dp"
+                        android:layout_marginTop="4dp"
+                        android:background="@drawable/bg_edit_text"
+                        android:hint="پیشوند ثابت (مثلاً ModelA_ یا LoRA1_)"
+                        android:paddingHorizontal="8dp"
+                        android:singleLine="true"
+                        android:textColor="@color/text_primary"
+                        android:textColorHint="@color/text_hint"
+                        android:textSize="12sp" />
+                </LinearLayout>
+
+                <EditText
+                    android:id="@+id/etSidePanelTitle"
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:background="@drawable/bg_edit_text"
+                    android:hint="عنوان فایل (مثلاً Cyber_Lion)"
+                    android:paddingHorizontal="10dp"
+                    android:singleLine="true"
+                    android:textColor="@color/text_primary"
+                    android:textColorHint="@color/text_hint"
+                    android:textSize="13sp" />
+
+                <!-- Extra Title (populated automatically from Mixer or manual) -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="6dp"
+                        android:text="عنوان اضافی:"
+                        android:textColor="@color/text_secondary"
+                        android:textSize="11sp" />
+
+                    <EditText
+                        android:id="@+id/etSidePanelExtraTitle"
+                        android:layout_width="0dp"
+                        android:layout_height="36dp"
+                        android:layout_weight="1"
+                        android:background="@drawable/bg_edit_text"
+                        android:hint="عنوان اضافی (خودکار از میکسر)"
+                        android:paddingHorizontal="10dp"
+                        android:singleLine="true"
+                        android:textColor="#FBBF24"
+                        android:textColorHint="@color/text_hint"
+                        android:textSize="12sp" />
+                </LinearLayout>
+
+                <!-- Combined Live Filename Preview -->
+                <TextView
+                    android:id="@+id/tvSidePanelFinalFilenamePreview"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="3dp"
+                    android:textColor="@color/text_hint"
+                    android:textSize="10sp"
+                    android:text="نام نهایی فایل: [عنوان]" />
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginVertical="10dp"
+                    android:background="@color/border_color" />
+
+                <!-- Positive Prompt Header -->
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="6dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentStart="true"
+                        android:layout_centerVertical="true"
+                        android:text="پرامپت مثبت:"
+                        android:textColor="@color/accent_blue"
+                        android:textSize="12sp"
+                        android:textStyle="bold" />
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentEnd="true"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:id="@+id/btnSidePanelPastePositive"
+                            android:layout_width="wrap_content"
+                            android:layout_height="30dp"
+                            android:background="@drawable/bg_badge_profile"
+                            android:foreground="?attr/selectableItemBackground"
+                            android:clickable="true"
+                            android:focusable="true"
+                            android:gravity="center"
+                            android:paddingHorizontal="10dp"
+                            android:text="📋 کلیپ‌بورد"
+                            android:textColor="@color/accent_blue"
+                            android:textSize="12sp"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:id="@+id/btnSidePanelPromptMixer"
+                            android:layout_width="wrap_content"
+                            android:layout_height="30dp"
+                            android:layout_marginStart="6dp"
+                            android:background="@drawable/bg_badge_profile"
+                            android:foreground="?attr/selectableItemBackground"
+                            android:clickable="true"
+                            android:focusable="true"
+                            android:gravity="center"
+                            android:paddingHorizontal="8dp"
+                            android:text="🔀 میکسر"
+                            android:textColor="#8B5CF6"
+                            android:textSize="12sp"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:id="@+id/btnSidePanelClearPositive"
+                            android:layout_width="wrap_content"
+                            android:layout_height="30dp"
+                            android:layout_marginStart="6dp"
+                            android:background="@drawable/bg_badge_profile"
+                            android:foreground="?attr/selectableItemBackground"
+                            android:clickable="true"
+                            android:focusable="true"
+                            android:gravity="center"
+                            android:paddingHorizontal="10dp"
+                            android:text="✕ پاکسازی"
+                            android:textColor="@color/accent_red"
+                            android:textSize="12sp"
+                            android:textStyle="bold" />
+                    </LinearLayout>
+                </RelativeLayout>
+
+                <!-- Positive Prompt Box / Preview Container -->
+                <FrameLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <EditText
+                        android:id="@+id/etSidePanelPositivePrompt"
+                        android:layout_width="match_parent"
+                        android:layout_height="78dp"
+                        android:background="@drawable/bg_edit_text"
+                        android:gravity="top|start"
+                        android:hint="متن پرامپت مثبت (با بستن پنل پاک نمی‌شود)..."
+                        android:inputType="textMultiLine|textCapSentences"
+                        android:overScrollMode="always"
+                        android:padding="8dp"
+                        android:paddingBottom="22dp"
+                        android:scrollbars="vertical"
+                        android:textColor="@color/text_primary"
+                        android:textColorHint="@color/text_hint"
+                        android:textSize="12sp" />
+
+                    <!-- Small Yellow Badge: "✨ میکس شده" at bottom right -->
+                    <TextView
+                        android:id="@+id/tvSidePanelMixedBadge"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="bottom|right"
+                        android:layout_marginRight="8dp"
+                        android:layout_marginEnd="8dp"
+                        android:layout_marginBottom="6dp"
+                        android:background="@drawable/bg_badge_mixed"
+                        android:includeFontPadding="false"
+                        android:paddingHorizontal="6dp"
+                        android:paddingVertical="2dp"
+                        android:text="✨ میکس شده"
+                        android:textColor="#FBBF24"
+                        android:textSize="10.5sp"
+                        android:textStyle="bold"
+                        android:visibility="gone" />
+                </FrameLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginVertical="10dp"
+                    android:background="@color/border_color" />
+
+                <!-- Negative Prompt Header with Lock -->
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="6dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentStart="true"
+                        android:layout_centerVertical="true"
+                        android:text="پرامپت منفی:"
+                        android:textColor="@color/accent_green"
+                        android:textSize="12sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/btnSidePanelToggleLockNegative"
+                        android:layout_width="wrap_content"
+                        android:layout_height="30dp"
+                        android:layout_alignParentEnd="true"
+                        android:background="@drawable/bg_badge_profile"
+                        android:foreground="?attr/selectableItemBackground"
+                        android:clickable="true"
+                        android:focusable="true"
+                        android:gravity="center"
+                        android:paddingHorizontal="10dp"
+                        android:text="🔓 باز (تغییرپذیر)"
+                        android:textColor="@color/text_secondary"
+                        android:textSize="12sp"
+                        android:textStyle="bold" />
+                </RelativeLayout>
+
+                <!-- Negative Prompt Box -->
+                <EditText
+                    android:id="@+id/etSidePanelNegativePrompt"
+                    android:layout_width="match_parent"
+                    android:layout_height="52dp"
+                    android:background="@drawable/bg_edit_text"
+                    android:gravity="top|start"
+                    android:hint="پرامپت منفی (در صورت قفل، با ریست هم پاک نمی‌شود)..."
+                    android:padding="8dp"
+                    android:scrollbars="vertical"
+                    android:textColor="@color/text_primary"
+                    android:textColorHint="@color/text_hint"
+                    android:textSize="12sp" />
+
+                <!-- Location Note -->
+                <TextView
+                    android:id="@+id/tvSidePanelSavePath"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:text="مسیر ذخیره: Download/SeaArt_Studio"
+                    android:textColor="@color/text_hint"
+                    android:textSize="10.5sp" />
+
+            </LinearLayout>
+        </ScrollView>
+
+        <!-- Modern Flat Save Button -->
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnSidePanelSave"
+            android:layout_width="match_parent"
+            android:layout_height="46dp"
+            android:layout_marginTop="8dp"
+            android:background="@drawable/bg_btn_save_flat"
+            app:backgroundTint="@null"
+            android:insetTop="0dp"
+            android:insetBottom="0dp"
+            app:cornerRadius="12dp"
+            android:text="ذخیره"
+            android:textSize="14sp"
+            android:textStyle="bold"
+            android:textColor="@color/color_btn_save_text"
+            app:icon="@drawable/ic_save_modern"
+            app:iconGravity="textStart"
+            app:iconPadding="8dp"
+            app:iconSize="20dp"
+            app:iconTint="@color/color_btn_save_text"
+            android:textAllCaps="false" />
+
+    </LinearLayout>
+
+</FrameLayout>

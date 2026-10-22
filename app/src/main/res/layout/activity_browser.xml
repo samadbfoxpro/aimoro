@@ -1,0 +1,401 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/bg_main">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+    <!-- Top Address and Profile Bar -->
+    <LinearLayout
+        android:id="@+id/layoutTopBar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/bg_surface"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:paddingHorizontal="6dp"
+        android:paddingVertical="5dp">
+
+        <!-- Active Profile Quick Badge -->
+        <TextView
+            android:id="@+id/tvProfileBadge"
+            android:layout_width="wrap_content"
+            android:layout_height="36dp"
+            android:background="@drawable/bg_badge_profile"
+            android:gravity="center"
+            android:paddingHorizontal="8dp"
+            android:text="اکانت ۱"
+            android:textColor="@color/accent_blue"
+            android:textSize="12sp"
+            android:textStyle="bold"
+            android:maxLines="1"
+            android:ellipsize="end" />
+
+        <!-- URL Input Field Container -->
+        <RelativeLayout
+            android:layout_width="0dp"
+            android:layout_height="36dp"
+            android:layout_weight="1"
+            android:layout_marginHorizontal="6dp"
+            android:background="@drawable/bg_edit_text">
+
+            <EditText
+                android:id="@+id/etUrl"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_toStartOf="@id/btnClearUrl"
+                android:background="@null"
+                android:hint="@string/search_hint"
+                android:imeOptions="actionGo"
+                android:inputType="textUri"
+                android:paddingHorizontal="8dp"
+                android:singleLine="true"
+                android:textColor="@color/text_primary"
+                android:textColorHint="@color/text_hint"
+                android:textSize="13sp" />
+
+            <ImageView
+                android:id="@+id/btnClearUrl"
+                android:layout_width="32dp"
+                android:layout_height="match_parent"
+                android:layout_alignParentEnd="true"
+                android:padding="7dp"
+                android:src="@drawable/ic_close"
+                android:visibility="gone"
+                android:contentDescription="Clear" />
+        </RelativeLayout>
+
+        <!-- Go / Navigate Button -->
+        <ImageButton
+            android:id="@+id/btnGo"
+            android:layout_width="36dp"
+            android:layout_height="36dp"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:contentDescription="Go"
+            android:padding="8dp"
+            android:src="@drawable/ic_arrow_go" />
+    </LinearLayout>
+
+    <!-- Browser Web Tabs Bar (Max 2 Tabs) -->
+    <LinearLayout
+        android:id="@+id/layoutWebTabsBar"
+        android:layout_width="match_parent"
+        android:layout_height="32dp"
+        android:background="@color/bg_surface"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:paddingHorizontal="8dp"
+        android:paddingBottom="3dp">
+
+        <!-- Tab 1 Chip -->
+        <LinearLayout
+            android:id="@+id/tab1Chip"
+            android:layout_width="wrap_content"
+            android:layout_height="26dp"
+            android:background="@drawable/bg_tab_active"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:paddingHorizontal="10dp"
+            android:clickable="true"
+            android:focusable="true">
+
+            <TextView
+                android:id="@+id/tvTab1Title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="🌐 تب ۱"
+                android:textColor="#FFFFFF"
+                android:textSize="11.5sp"
+                android:textStyle="bold"
+                android:maxLines="1"
+                android:ellipsize="end"
+                android:maxWidth="130dp" />
+        </LinearLayout>
+
+        <!-- Tab 2 Chip (Initially Gone) -->
+        <LinearLayout
+            android:id="@+id/tab2Chip"
+            android:layout_width="wrap_content"
+            android:layout_height="26dp"
+            android:layout_marginStart="6dp"
+            android:background="@drawable/bg_tab_inactive"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:paddingStart="10dp"
+            android:paddingEnd="6dp"
+            android:visibility="gone"
+            android:clickable="true"
+            android:focusable="true">
+
+            <TextView
+                android:id="@+id/tvTab2Title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="🌐 تب ۲"
+                android:textColor="#CCCCCC"
+                android:textSize="11.5sp"
+                android:maxLines="1"
+                android:ellipsize="end"
+                android:maxWidth="110dp" />
+
+            <TextView
+                android:id="@+id/btnTab2Close"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:layout_marginStart="4dp"
+                android:gravity="center"
+                android:text="✕"
+                android:textColor="#AAAAAA"
+                android:textSize="11sp"
+                android:clickable="true"
+                android:focusable="true" />
+        </LinearLayout>
+
+        <!-- New Tab (+) Button -->
+        <TextView
+            android:id="@+id/btnNewWebTab"
+            android:layout_width="26dp"
+            android:layout_height="26dp"
+            android:layout_marginStart="6dp"
+            android:background="@drawable/bg_tab_inactive"
+            android:gravity="center"
+            android:text="+"
+            android:textColor="@color/accent_blue"
+            android:textSize="15sp"
+            android:textStyle="bold"
+            android:clickable="true"
+            android:focusable="true" />
+
+        <View
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1" />
+
+        <!-- Count Indicator -->
+        <TextView
+            android:id="@+id/tvTabsCountIndicator"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="۱ از ۲ تب"
+            android:textColor="@color/text_hint"
+            android:textSize="10.5sp"
+            android:layout_marginEnd="4dp" />
+    </LinearLayout>
+
+    <!-- Active Profiles Tab Bar (Shows currently loaded profiles in RAM) -->
+    <HorizontalScrollView
+        android:id="@+id/profileTabsScrollView"
+        android:layout_width="match_parent"
+        android:layout_height="34dp"
+        android:background="@color/bg_surface"
+        android:fillViewport="true"
+        android:scrollbars="none"
+        android:visibility="gone">
+
+        <LinearLayout
+            android:id="@+id/profileTabsContainer"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:paddingHorizontal="6dp"
+            android:paddingBottom="4dp" />
+    </HorizontalScrollView>
+
+    <!-- Ultra-thin Flat Progress Indicator (Zero animation, clean loading line) -->
+    <ProgressBar
+        android:id="@+id/progressBar"
+        style="?android:attr/progressBarStyleHorizontal"
+        android:layout_width="match_parent"
+        android:layout_height="2.5dp"
+        android:max="100"
+        android:progress="0"
+        android:progressTint="@color/progress_bar"
+        android:visibility="gone" />
+
+    <!-- Main Isolated WebView Area -->
+    <FrameLayout
+        android:id="@+id/webContainer"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1">
+
+        <!-- Dynamic Multi-WebView Container for LRU Pool -->
+        <FrameLayout
+            android:id="@+id/webViewContainer"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+
+        <!-- Offline Home / Start Screen (Shortcuts & Quick Access) -->
+        <include
+            android:id="@+id/includedHomeScreen"
+            layout="@layout/view_offline_home_screen"
+            android:visibility="gone" />
+
+        <!-- Slim Vertical Edge Tab Handle pinned to the right edge center -->
+        <FrameLayout
+            android:id="@+id/btnMiniClipEdgeTab"
+            android:layout_width="28dp"
+            android:layout_height="76dp"
+            android:layout_gravity="center_vertical|end"
+            android:background="@drawable/bg_edge_tab"
+            android:clickable="true"
+            android:clipChildren="false"
+            android:clipToPadding="false"
+            android:focusable="true">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/tvMiniClipBadge"
+                    android:layout_width="18dp"
+                    android:layout_height="18dp"
+                    android:background="@drawable/bg_badge_counter"
+                    android:gravity="center"
+                    android:includeFontPadding="false"
+                    android:text="1"
+                    android:textColor="#FFFFFF"
+                    android:textSize="9sp"
+                    android:textStyle="bold"
+                    android:visibility="gone" />
+
+                <ImageView
+                    android:id="@+id/ivEdgeTabChevron"
+                    android:layout_width="16dp"
+                    android:layout_height="16dp"
+                    android:layout_marginTop="3dp"
+                    android:src="@drawable/ic_chevron_left"
+                    android:contentDescription="Mini-Clip Tab" />
+            </LinearLayout>
+        </FrameLayout>
+
+        <!-- Sliding Mini-Clip Side Panel Overlay -->
+        <include
+            android:id="@+id/includedSidePanel"
+            layout="@layout/view_mini_clip_side_panel" />
+    </FrameLayout>
+
+    <!-- Bottom Navigation Bar (Lightweight, instant response) -->
+    <LinearLayout
+        android:id="@+id/layoutBottomBar"
+        android:layout_width="match_parent"
+        android:layout_height="46dp"
+        android:background="@color/bg_surface"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <ImageButton
+            android:id="@+id/btnBack"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:contentDescription="@string/nav_back"
+            android:padding="12dp"
+            android:src="@drawable/ic_arrow_back" />
+
+        <ImageButton
+            android:id="@+id/btnForward"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:contentDescription="@string/nav_forward"
+            android:padding="12dp"
+            android:src="@drawable/ic_arrow_forward" />
+
+        <ImageButton
+            android:id="@+id/btnRefresh"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:contentDescription="@string/nav_refresh"
+            android:padding="12dp"
+            android:src="@drawable/ic_refresh" />
+
+        <ImageButton
+            android:id="@+id/btnHome"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:contentDescription="@string/nav_home"
+            android:padding="12dp"
+            android:src="@drawable/ic_home" />
+
+        <ImageButton
+            android:id="@+id/btnProfiles"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:contentDescription="@string/nav_profiles"
+            android:padding="12dp"
+            android:src="@drawable/ic_profiles" />
+
+        <ImageButton
+            android:id="@+id/btnGallery"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:contentDescription="Gallery"
+            android:padding="12dp"
+            android:src="@drawable/ic_gallery" />
+
+        <ImageButton
+            android:id="@+id/btnMore"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:contentDescription="@string/nav_menu"
+            android:padding="12dp"
+            android:src="@drawable/ic_more_vert" />
+    </LinearLayout>
+    </LinearLayout>
+
+    <!-- Sleek Top Floating Notification Pill (Dynamic Island style) -->
+    <LinearLayout
+        android:id="@+id/layoutTopNotification"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="top|center_horizontal"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/bg_top_notification_pill"
+        android:elevation="16dp"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:paddingHorizontal="14dp"
+        android:paddingVertical="7dp"
+        android:translationY="-120dp"
+        android:visibility="gone">
+
+        <ImageView
+            android:id="@+id/ivTopNotificationIcon"
+            android:layout_width="14dp"
+            android:layout_height="14dp"
+            android:layout_marginEnd="6dp"
+            android:src="@drawable/ic_check_circle_green"
+            android:contentDescription="Notification Icon" />
+
+        <TextView
+            android:id="@+id/tvTopNotificationText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:includeFontPadding="false"
+            android:text="تصویر به مینی‌کلیپ اضافه شد"
+            android:textColor="#FFFFFF"
+            android:textSize="11.5sp" />
+    </LinearLayout>
+
+</FrameLayout>

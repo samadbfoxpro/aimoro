@@ -1,3 +1,41 @@
 <resources>
-    <string name="app_name">aimoror</string>
+    <string name="app_name">SeaArt Studio</string>
+    <string name="search_hint">جستجو یا درج آدرس اینترنتی…</string>
+    <string name="home_url">https://www.google.com</string>
+    
+    <!-- Navigation -->
+    <string name="nav_back">قبلی</string>
+    <string name="nav_forward">بعدی</string>
+    <string name="nav_refresh">بروزرسانی</string>
+    <string name="nav_home">خانه</string>
+    <string name="nav_profiles">پروفایل‌ها</string>
+    <string name="nav_menu">منو</string>
+    
+    <!-- Profile Management -->
+    <string name="profiles_title">مدیریت اکانت‌ها و پروفایل‌ها</string>
+    <string name="current_profile">پروفایل فعال: %1$s</string>
+    <string name="profile_isolated_desc">محیط کاملاً ایزوله (کوکی‌ها، کش و دیتای مجزا)</string>
+    <string name="btn_switch">ورود به این اکانت</string>
+    <string name="btn_add_profile">+ ساخت پروفایل / اکانت جدید</string>
+    <string name="btn_clear_data">پاکسازی حافظه و کوکی</string>
+    <string name="btn_rename">تغییر نام</string>
+    <string name="btn_delete">حذف</string>
+    <string name="clear_confirm_title">پاکسازی اطلاعات پروفایل</string>
+    <string name="clear_confirm_msg">آیا مایلید تمام کوکی‌ها، حافظه پنهان و سشن‌های این پروفایل پاک شوند؟</string>
+    <string name="delete_confirm_title">حذف پروفایل</string>
+    <string name="delete_confirm_msg">آیا از حذف این پروفایل اطمینان دارید؟</string>
+    <string name="dialog_create_profile">ایجاد اکانت جدید</string>
+    <string name="dialog_profile_name_hint">نام پروفایل (مثلاً اکانت کاری ۲)</string>
+    <string name="btn_confirm">تایید</string>
+    <string name="btn_cancel">انصراف</string>
+    
+    <!-- Menu -->
+    <string name="menu_desktop_mode">حالت دسکتاپ</string>
+    <string name="menu_clear_current">پاکسازی دیتای سشن فعلی</string>
+    <string name="menu_open_in_browser">باز کردن در مرورگر پیش‌فرض</string>
+    <string name="menu_info">درباره مرورگر ایزوله</string>
+    
+    <!-- Status -->
+    <string name="data_cleared_success">داده‌های این اکانت با موفقیت پاکسازی شد</string>
+    <string name="max_profiles_reached">حداکثر سقف پروفایل‌های همزمان تکمیل است</string>
 </resources>
